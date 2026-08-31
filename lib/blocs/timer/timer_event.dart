@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 
-/// Events that drive the focus timer.
+import 'timer_state.dart';
+
 sealed class TimerEvent extends Equatable {
   const TimerEvent();
 
@@ -8,17 +9,26 @@ sealed class TimerEvent extends Equatable {
   List<Object?> get props => [];
 }
 
-/// Starts or pauses the countdown.
 final class ToggleTimer extends TimerEvent {
   const ToggleTimer();
 }
 
-/// Resets the countdown to its initial length.
 final class ResetTimer extends TimerEvent {
   const ResetTimer();
 }
 
-/// Advances the countdown by one second.
 final class TickTimer extends TimerEvent {
   const TickTimer();
+}
+
+final class SelectMode extends TimerEvent {
+  const SelectMode(this.mode);
+  final FocusMode mode;
+
+  @override
+  List<Object?> get props => [mode];
+}
+
+final class LoadTimer extends TimerEvent {
+  const LoadTimer();
 }
