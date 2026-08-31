@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'blocs/auth/auth_bloc.dart';
 import 'blocs/task/task_bloc.dart';
 import 'blocs/task/task_event.dart';
 import 'blocs/timer/timer_bloc.dart';
@@ -21,6 +22,7 @@ class FocusLeafApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(create: (_) => AuthBloc()),
         BlocProvider(
           create: (_) => TaskBloc(repository: taskRepository)
             ..add(const LoadTasks()),
